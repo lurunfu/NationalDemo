@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Medic | Medical HTML Template</title>
+
+  
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="plugins/slick/slick.css">
+  <link rel="stylesheet" href="plugins/slick/slick-theme.css">
+  <!-- FancyBox -->
+  <link rel="stylesheet" href="plugins/fancybox/jquery.fancybox.min.css">
+  
+  <!-- Stylesheets -->
+  <link href="css/style2.css" rel="stylesheet">
+  
+  <!--Favicon-->
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+</head>
+<style type="text/css">
+	* {padding: 0;margin: 0;font-family: "微软雅黑";font-size: 25px;}
+	ul,li {list-style: none;}
+	a {text-decoration: none;color: black;}
+	.box{width: 800px;height: 400px;margin: 20px auto;overflow: hidden;position: relative;}
+	.box-1 ul{}
+	.box-1 ul li{width: 800px;height: 400px;position: relative;overflow: hidden;}
+	.box-1 ul li img{display:block;width: 800px; height: 400px;}
+	.box-1 ul li h2{position: absolute;left: 0;bottom: 0;height: 40px;width:300px;background: rgba(125,125,120,.4);text-indent: 2em;
+					padding-right:500px ;font-size: 15px;line-height: 40px;text-overflow: ellipsis;overflow: hidden;
+					white-space: nowrap;font-weight: normal;color: ghostwhite}
+	.box-2{position: absolute;right: 10px;bottom: 14px;}
+	.box-2 ul li{float:left;width: 12px;height: 12px;overflow: hidden; margin: 0 5px; border-radius: 50%;
+					background: rgba(0,0,0,0.5);text-indent: 100px;cursor: pointer;}
+	.box-2 ul .on{background: rgba(255,255,255,0.6);}
+	.box-3 span{position: absolute;color: white;background: rgba(125,125,120,.3);width: 50px;height: 80px;
+					top:50%; font-family: "宋体";line-height: 80px;font-size:60px;margin-top: -40px;
+					text-align: center;cursor: pointer;}
+	.box-3 .prev{left: 10px;}
+	.box-3 .next{right: 10px;}
+	.box-3 span::selection{background: transparent;}
+	.box-3 span:hover{background: rgba(125,125,120,.8);}
+	
+	.boxbg{border: #000000 1px solid;position: relative;width:100%;height: 200px;background-color:red;}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	function $(param){
+		if(arguments[1] == true){
+			return document.querySelectorAll(param);
+		}else{
+			return document.querySelector(param);
+		}
+	}
+	var $box = $(".box");
+	var $box1 = $(".box-1 ul li",true);
+	var $box2 = $(".box-2 ul");
+	var $box3 = $(".box-3");
+	var $length = $box1.length;
+	
+	var str = "";
+	for(var i =0;i<$length;i++){
+		if(i==0){
+			str +="<li class='on'>"+(i+1)+"</li>";
+		}else{
+			str += "<li>"+(i+1)+"</li>";
+		}
+	}
+	$box2.innerHTML = str;
+	
+	var current = 0;
+	
+	var timer;
+	timer = setInterval(go,10000);
+	function go(){
+		for(var j =0;j<$length;j++){
+			$box1[j].style.display = "none";
+			$box2.children[j].className = "";
+		}
+		if($length == current){
+			current = 0;
+		}
+		$box1[current].style.display = "block";
+		$box2.children[current].className = "on";
+		current++;
+	}
+	
+	for(var k=0;k<$length;k++){
+		$box1[k].onmouseover = function(){
+			clearInterval(timer);
+		}
+		$box1[k].onmouseout = function(){
+			timer = setInterval(go,10000);
+		}
+	}
+	for(var p=0;p<$box3.children.length;p++){
+		$box3.children[p].onmouseover = function(){
+			clearInterval(timer);
+		};
+		$box3.children[p].onmouseout = function(){
+			timer = setInterval(go,10000);
+		}
+	}
+	
+	for(var u =0;u<$length;u++){
+		$box2.children[u].index  = u;
+		$box2.children[u].onmouseover = function(){
+			clearInterval(timer);
+			for(var j=0;j<$length;j++){
+				$box1[j].style.display = "none";
+				$box2.children[j].className = "";
+			}
+			this.className = "on";
+			$box1[this.index].style.display = "block";
+			current = this.index +1;
+		}
+		$box2.children[u].onmouseout = function(){
+			timer = setInterval(go,10000);
+		}
+	}
+	
+	$box3.children[0].onclick = function(){
+		back();
+	}
+	$box3.children[1].onclick = function(){
+		go();
+	}
+	function back(){
+		for(var j =0;j<$length;j++){
+			$box1[j].style.display = "none";
+			$box2.children[j].className = "";
+		}
+		if(current == 0){
+			current = $length;
+		}
+		$box1[current-1].style.display = "block";
+		$box2.children[current-1].className = "on";
+		current--;
+	}
+}
+</script>
+
+<body>
+ 
+    
+
+<section class="page-title text-center" style="background-image:url(images/about/3.jpg);">
+    <div class="container">
+        <div class="title-text">
+            <h1>壮丽70年</h1>
+            <ul class="title-menu clearfix">
+                <li>
+                    <a href="index.html">首页 </a>
+                </li>
+               
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div id="" style="margin-top: 30px;">
+	<center><img src="images/about/34.jpg"></center>
+</div>
+<div class="box">
+ 	<div class="box-1">
+		
+		
+ 		<ul>
+ 			<li>
+ 				<img src="images/about/29.jpg" alt=""></img>
+ 				<h2>庆祝中华人民共和国成立70周年大型成就展向公众开放</h2>
+ 			</li>
+ 			<li>
+ 				<img src="images/about/30.jpg" alt=""></img>
+ 				<h2>北京大兴国际机场投运：“凤”舞东方起宏图</h2>
+ 			</li>
+ 			<li>
+ 				<img src="images/about/31.jpg" alt=""></img>
+ 				<h2>大庆油田"60周岁"了</h2>
+ 			</li>
+ 			<li>
+ 				<img src="images/about/32.jpg" alt=""></img>
+ 				<h2>从大型成就展看新中国光辉历程：天翻地覆慨而慷</h2>
+ 			</li>
+ 			<li>
+ 				<img src="images/about/33.jpg" alt=""></img>
+ 				<h2>黄河生态补水“救助”乌梁素海——乌梁素海生态治理见闻</h2>
+ 			</li>
+ 		</ul>
+ 	</div>
+ 	<div class="box-2">
+ 		<ul>
+ 			
+ 		</ul>
+ 	</div>
+ 	<div class="box-3">
+ 		<span class="prev"> < </span>
+ 		<span class="next"> > </span>
+ 	</div>
+ </div>
+<br>
+<br>
+<br>
+
+           
+            <center><h1><font color="red">新中国的“第一”·70年</h1></center>
+<section class="story">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="images/about/1.jpg" class="responsive" alt="story">
+							<center>	<p>第一个国家森林公园张家界</p></center>
+								<img src="images/about/2.jpg" class="responsive" alt="story">
+                <center><p>第一台自主设计的蛟龙号载人潜水器</p></center>
+						</div>
+            <div class="col-md-6">
+                <div class="story-content">
+                    <b><h3><font color="red">我国第一颗氢弹空爆实验成功</h3></b>
+                    <h6> 1967年6月17日8时20分，我国第一颗氢弹空爆试验成功，实测当量330万吨，中国成为世界上第四个掌握氢弹技术的国家。</h6>
+                    <br>
+                    <h6>“一切准备就绪。……震动世界的时刻来到了。”“骤然间，闪光万丈，碧蓝天空涌现出一个烈焰翻腾的大火球，只听一声天崩地裂的巨响，火球消失，一个蘑菇形状烟云上升。我国自己设计、自己制造的第一颗氢弹爆炸成功了！”1967年6月18日，人民日报刊发文章，对我国第一颗氢弹爆炸成功进行了纪实报道。</h6>
+                    <br>
+                    <h6>20世纪五六十年代，面对严峻的国际形势，为了抵御帝国主义的武力威胁和打破大国的核讹诈、核垄断，尽快增强国防实力，保卫和平，党中央果断决定研制“两弹一星”，重点突破国防尖端技术，作出了对人民共和国的发展和安全具有重大战略意义的英明决策。</h6>
+                    <br>
+				            <h6>中国核工业从诞生之日起就以维护和平为目的，顺应历史潮流，在强军的同时，重点为国民经济建设服务，实现了核电零的突破和步步跨越的核能梦。</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="gallery bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3><font color="orangered"><font color="red">新中国</font>
+                        <span>峥嵘岁月</span>
+                    </h3>
+                   
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/about/4.jpg" class="img-responsive" alt="gallery-image">
+                <a data-fancybox="images" href="images/about/4.jpg"></a>
+								</div>
+								<h4><font color="red">向工业的目标迈进</h4>
+								<p>1953年10月27日，新建成的鞍山钢铁公司无缝钢管厂的汽笛一声鸣响，我国第一根无缝钢管轧制出来了。</p>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/about/8.jpg" class="img-responsive" alt="gallery-image">
+          <a data-fancybox="images" href="images/about/8.jpg"></a>
+                </div>
+								<h3><font color="red">蜀道之难大改观</h3>
+								<p>1952年7月1日，西南军区司令员贺龙在成都火车站成渝铁路通车典礼上将红绸彩带用力一剪，标志着“蜀道难”的历史从此改变了。</p>
+ 
+						</div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/about/6.jpg" class="img-responsive" alt="gallery-image">
+                    <a data-fancybox="images" href="images/about/6.jpg"></a>
+                     
+                </div>
+								<h3><font color="red">登上国际舞台</h3>
+								<p>新中国成立初期，毛泽东提出“打扫干净屋子再请客”的外交方针，表达了摆脱屈辱外交的决心和开展外交工作的基本方略。</p>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/about/5.jpg" class="img-responsive" alt="gallery-image">
+                    <a data-fancybox="images" href="images/about/5.jpg"></a>
+                </div>
+								<h3><font color="red">急急忙忙往前闯</h3>
+								<p>为了完成钢铁生产任务，全国城乡掀起轰轰烈烈的全民大炼钢铁群众运动。与此同时，全国农村出现了人民公社化运动高潮。</p>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/about/9.jpg" class="img-responsive" alt="gallery-image">
+                    <a data-fancybox="images" href="images/about/9.jpg"></a>
+                    
+                </div>
+								<h3><font color="red">思考和探索中国自己的路</h3>
+                    <p>1956年，是新中国探索自己的社会主义道路的开端。这一年的许多重大举措，对以后的历史发展产生了深远的影响。</p>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/about/10.jpg" class="img-responsive" alt="gallery-image">
+                    <a data-fancybox="images" href="images/about/10.jpg"></a>
+                    
+                </div>
+								<h3><font color="red">从“和风细雨”到“疾风暴雨”</h3>
+								<p>广大群众、党外人士和党员积极响应号召，对党和政府的工作以及党政干部的思想作风提出了大量有益的批评和建议。</p>
+            
+						
+						
+						</div>
+						<div class="col-md-4 col-sm-6">
+									<div class="gallery-item">
+											<img src="images/about/11.jpg" class="img-responsive" alt="gallery-image">
+									<a data-fancybox="images" href="images/about/11.jpg"></a>
+									</div>
+									<h3><font color="red">社会主义改造完成</h3>
+									<p>走社会主义道路是中国人民历史的选择。1953年，中共中央正式提出了过渡时期总路线。在总路线的指导下，社会主义改造开始进行。</p>
+							</div>
+							<div class="col-md-4 col-sm-6">
+									<div class="gallery-item">
+											<img src="images/about/12.jpg" class="img-responsive" alt="gallery-image">
+						<a data-fancybox="images" href="images/about/12.jpg"></a>
+									</div>
+									<h3><font color="red">中华名族大家庭</h3>
+									<p>民族区域自治制度和一整套符合实际的民族政策的实施，为处于游牧状态的少数民族定居下来过上文明幸福的生活提供了条件。</p>
+												
+							</div>
+							<div class="col-md-4 col-sm-6">
+									<div class="gallery-item">
+											<img src="images/about/13.jpg" class="img-responsive" alt="gallery-image">
+											<a data-fancybox="images" href="images/about/13.jpg"></a>
+												
+									</div>
+									<h3><font color="red">根本政治制度确立</h3>
+									<p>新中国成立后第一次全国人民代表大会，于1954年9月15日在北京中南海怀仁堂隆重开幕。是我国人民民主建设的重要里程碑。</p>
+							</div>
+							
+							</div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+<section class="gallery bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3><font color="red">共和国成就巡礼
+                        
+                    </h3>
+                   
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/about/14.jpg" class="img-responsive" alt="gallery-image">
+                <a data-fancybox="images" href="images/about/14.jpg"></a>
+								</div>
+								<h4><font color="#000000">崛起中的国际物流大枢纽</h4>
+								
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/about/15.jpg" class="img-responsive" alt="gallery-image">
+          <a data-fancybox="images" href="images/about/15.jpg"></a>
+                </div>
+								<h4><font color="#000000">照亮寿光乡村振兴之路</h4>
+							
+ 
+						</div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/about/16.jpg" class="img-responsive" alt="gallery-image">
+                    <a data-fancybox="images" href="images/about/16.jpg"></a>
+                     
+                </div>
+								<h4><font color="#000000">奋力走好新时代的长征路</h4>
+								
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/about/17.jpg" class="img-responsive" alt="gallery-image">
+                    <a data-fancybox="images" href="images/about/17.jpg"></a>
+                </div>
+								<h4><font color="#000000">新中国70年创造人类减贫奇迹</h4>
+								
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/about/18.jpg" class="img-responsive" alt="gallery-image">
+                    <a data-fancybox="images" href="images/about/18.jpg"></a>
+                    
+                </div>
+								<h4><font color="#000000">朝着高质量发展笃定前行</h4>
+                   
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+                    <img src="images/about/19.jpg" class="img-responsive" alt="gallery-image">
+                    <a data-fancybox="images" href="images/about/19.jpg"></a>
+                    
+                </div>
+								<h4><font color="#000000">八步沙见证一份绿色的承诺</h4>
+								
+            
+						</div>
+											<div class="col-md-4 col-sm-6">
+													<div class="gallery-item">
+															<img src="images/about/20.jpg" class="img-responsive" alt="gallery-image">
+													<a data-fancybox="images" href="images/about/20.jpg"></a>
+													</div>
+													<h4><font color="#000000">七彩云南的历史性跨越</h4>
+													
+											</div>
+											<div class="col-md-4 col-sm-6">
+													<div class="gallery-item">
+															<img src="images/about/21.jpg" class="img-responsive" alt="gallery-image">
+										<a data-fancybox="images" href="images/about/21.jpg"></a>
+													</div>
+													<h4><font color="#000000">京华大地向美而行</h4>
+													
+						
+											</div>
+											<div class="col-md-4 col-sm-6">
+													<div class="gallery-item">
+															<img src="images/about/22.jpg" class="img-responsive" alt="gallery-image">
+															<a data-fancybox="images" href="images/about/22.jpg"></a>
+																
+													</div>
+													<h4><font color="#000000">70年砥砺<b>奋</b>进的壮丽史诗</h4>
+													
+											</div>
+											<div class="col-md-4 col-sm-6">
+													<div class="gallery-item">
+															<img src="images/about/23.jpg" class="img-responsive" alt="gallery-image">
+															<a data-fancybox="images" href="images/about/23.jpg"></a>
+													</div>
+													<h4><font color="#000000">领航新中国&nbsp;<b>奋</b>进新时代</h4>
+													
+											</div>
+											<div class="col-md-4 col-sm-6">
+													<div class="gallery-item">
+															<img src="images/about/24.jpg" class="img-responsive" alt="gallery-image">
+															<a data-fancybox="images" href="images/about/24.jpg"></a>
+															
+													</div>
+													<h4><font color="#000000">凉山脱贫攻坚调查</h4>
+															
+											</div>
+											<div class="col-md-4 col-sm-6">
+													<div class="gallery-item">
+															<img src="images/about/25.jpg" class="img-responsive" alt="gallery-image">
+															<a data-fancybox="images" href="images/about/25.jpg"></a>
+															
+													</div>
+													<h4><font color="#000000">新疆是个好地方</h4>
+													
+											
+											</div>
+		<div class="col-md-4 col-sm-6">
+								<div class="gallery-item">
+											<img src="images/about/26.jpg" class="img-responsive" alt="gallery-image">
+										<a data-fancybox="images" href="images/about/26.jpg"></a>
+											</div>
+								<h4><font color="#000000">我国经济增长的含金量</h4>
+																		
+											</div>
+												<div class="col-md-4 col-sm-6">
+												<div class="gallery-item">
+													<img src="images/about/27.jpg" class="img-responsive" alt="gallery-image">
+													<a data-fancybox="images" href="images/about/27.jpg"></a>
+												</div>
+											<h4><font color="#000000">人民军队在新中国发展壮大</h4>
+																	
+											
+									</div>
+												<div class="col-md-4 col-sm-6">
+														<div class="gallery-item">
+															<img src="images/about/28.jpg" class="img-responsive" alt="gallery-image">
+												<a data-fancybox="images" href="images/about/28.jpg"></a>
+																					
+										</div>
+										<h4><font color="#000000">让古老的大运河亮出金名片</h4>
+																		
+																</div>
+																
+																					
+																					</div>
+        </div>
+    </div>
+	</section>
+
+
+
+
+<section class="gallery bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title text-center">
+                    <h3><font color="orangered">调研足迹
+                        
+                    </h3>
+                   
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+					<h1><font size="" color="red">河北</font></h1>
+                    <img src="images/about/14.jpg" class="img-responsive" alt="gallery-image">
+                <a data-fancybox="images" href="images/about/14.jpg"></a>
+				
+								</div>
+				<h4><font color="#000000"><b></b>用心&nbsp;用情&nbsp;用功抒写壮丽70年</b></h4>
+						<p>西柏坡，一个永远铭记于党的历史、共和国历史的名字，一座革命的圣地、精神的高地。</p>
+						
+							
+							
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+					<h1><font size="" color="red">广西</font></h1>
+                    <img src="images/about/15.jpg" class="img-responsive" alt="gallery-image">
+          <a data-fancybox="images" href="images/about/15.jpg"></a>
+                </div>
+								<h4><font color="#000000"><b>德国外商眼中的“西部”陆海新通道</b></h4>
+							<p>任何国家都需要接触外部世界，“一带一路”倡议将国与国连结起来。</p>
+                           
+						   
+						   
+						</div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+					<h1><font size="" color="red">山东</font></h1>
+                    <img src="images/about/16.jpg" class="img-responsive" alt="gallery-image">
+                    <a data-fancybox="images" href="images/about/16.jpg"></a>
+                     
+                </div>
+								<h4><font color="#000000">寿光，为什么能？</h4>
+								<p>这里不只有一位农民的儿子王乐义，而是遍地英雄，有着千千万万、各行各业、白手起家的“王乐义”；</p>
+								
+            </div>
+			
+			<div class="col-md-4 col-sm-6">
+					<div class="gallery-item">
+						<h1><font size="" color="red">浙江</font></h1>
+							<img src="images/about/23.jpg" class="img-responsive" alt="gallery-image">
+							<a data-fancybox="images" href="images/about/23.jpg"></a>
+					</div>
+					<h4><font color="#000000">关于民营经济发展的一点思考</h4>
+					<p>乐清湾之滨、瓯江口北岸，坐落着一个名叫“柳市”的小镇。这个历史上因在柳树下形成集市而得名的小镇，在改革开放的大潮中谱写了一段传奇的农民创业史，成为了全国民营经济的发祥地。</p>
+			</div>
+			<div class="col-md-4 col-sm-6">
+					<div class="gallery-item">
+						<h1><font size="" color="red">海南</font></h1>
+							<img src="images/about/24.jpg" class="img-responsive" alt="gallery-image">
+							<a data-fancybox="images" href="images/about/24.jpg"></a>
+							
+					</div>
+					<h4><font color="#000000">改革开放接续奋斗、伟大事业继往开来</h4>
+					<p>4月的海南，日暖风轻，春和万绿。湛蓝的天空给人们内心带来清澈，碧绿的清水滋养着岛上的万物，人与自然在和谐共生中感受着4月的欢喜与激情。</p>
+							
+			</div>
+			<div class="col-md-4 col-sm-6">
+					<div class="gallery-item">
+						<h1><font size="" color="red">黑龙江</font></h1>
+							<img src="images/about/25.jpg" class="img-responsive" alt="gallery-image">
+							<a data-fancybox="images" href="images/about/25.jpg"></a>
+							
+					</div>
+					<h4><font color="#000000">又见大庆</h4>
+					<p>“宁肯少活20年，拼命也要拿下大油田”
+
+　　“有条件要上，没有条件创造条件也要上”
+
+　　“石油工人一声吼，地球也要抖三抖。石油工人干劲大，天大困难也不怕”
+
+　　“把中国贫油落后的帽子甩到太平洋里去”</p>
+					
+					
+					
+			
+			</div>
+			
+			<div class="col-md-4 col-sm-6">
+					<div class="gallery-item">
+						<h1><font size="" color="red">厦门</font></h1>
+							<img src="images/about/22.jpg" class="img-responsive" alt="gallery-image">
+							<a data-fancybox="images" href="images/about/22.jpg"></a>
+								
+					</div>
+					<h4><font color="#000000">新时代继续弘扬“嘉庚精神”</h4>
+					<p>陈嘉庚先生是我国著名的爱国华侨领袖，他一生爱国、一生创业、一生兴学，他的实践和精神形成了独特而丰富的“嘉庚精神”。<br>爱国主义是“嘉庚精神”的核心，嘉庚先生一生都是以国家为重、以民族为重。</p>
+			</div>
+			
+			
+			
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+					
+					<h1><font size="" color="red">江苏</font></h1>
+                    <img src="images/about/17.jpg" class="img-responsive" alt="gallery-image">
+                    <a data-fancybox="images" href="images/about/17.jpg"></a>
+                </div>
+								<h4><font color="#000000">江阴调研札记</h4>
+								<p>江阴，位于江苏省东南部，北倚长江、南濒太湖，是自上海溯江而上的第一座滨江港口县级市。<br>“我们始终做到听中央的不走样，坚决落实。只要中央精神一出来，我们马上就办”。</p>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="gallery-item">
+					<h1><font size="" color="red">青藏</font></h1>
+                    <img src="images/about/18.jpg" class="img-responsive" alt="gallery-image">
+                    <a data-fancybox="images" href="images/about/18.jpg"></a>
+                    
+                </div>
+								<h4><font color="#000000">朝“圣”青藏线</h4>
+                   <p>这是一次朝“圣”之旅。这个“圣”就是天路上的劳动者。<br>这使我们的采访，真真正正成了一次朝“圣”之旅。这个“圣”就是天路上的劳动者。</p>
+            </div>
+			</div>
+        </div>
+    </div>
+
+<div id="a666">
+	<p >@Happy National Day-70周年</p>
+</div>
+</body>
+
+</html>
